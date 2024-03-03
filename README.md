@@ -64,6 +64,13 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+Create local .env file with these variables:
+
+```
+TAX_CALCULATOR_URL = 'http://servername'
+TAX_CALCULATOR_PATH = '/tax-calculator/tax-year'
+```
+
 ### Executing program
 
 * Run the following command in project folder
