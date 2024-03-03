@@ -53,7 +53,7 @@ Sample response:
 ## Getting Started
 
 ### Dependencies
-*Python 3
+* Python 3
 
 ### Installing
 
