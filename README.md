@@ -68,13 +68,13 @@ pip install -r requirements.txt
 
 * Run the following command in project folder
 ```
-python3 app.py
+python app.py
 ```
 
 ## Run tests
 
 ```
-python3 -m pytest
+python -m pytest
 ```
 
 ## Authors
