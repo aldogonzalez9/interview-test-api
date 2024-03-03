@@ -57,8 +57,10 @@ Sample response:
 
 ### Installing
 
-* Clone this repository
+* Clone this repository and later create virtualenv for the project,after that you can install requirements
 ```
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -66,13 +68,13 @@ pip install -r requirements.txt
 
 * Run the following command in project folder
 ```
-python app.py
+python3 app.py
 ```
 
 ## Run tests
 
 ```
-python -m pytests
+python3 -m pytest
 ```
 
 ## Authors
