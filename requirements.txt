@@ -3,3 +3,4 @@ requests==2.31.0
 python-dotenv==1.0.1
 pytest==8.0.2
 requests-mock==1.11.0
+black==24.2.0

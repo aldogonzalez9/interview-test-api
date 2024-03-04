@@ -14,6 +14,8 @@ Accomplish the following:
 Sample response:
 ```
 {
+    "salary": 100000,
+    "tax_year": 2022,
     "taxes_owed_per_band": [
         {
             "amount_taxable": 50197,
@@ -64,7 +66,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Create local .env file with these variables:
+Create local .env file with these variables: 
 
 ```
 TAX_CALCULATOR_URL = 'http://servername'

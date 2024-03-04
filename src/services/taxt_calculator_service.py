@@ -65,5 +65,7 @@ class TaxCalculatorService:
             }
             taxes_response[TAXES_OWED_PER_BAND].append(current_band)
         taxes_response["total_taxes_owed"] = round(total_taxes, 2)
+        taxes_response["salary"] = salary
+        taxes_response["tax_year"] = year
 
         return taxes_response
