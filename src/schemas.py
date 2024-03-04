@@ -2,10 +2,14 @@ import logging
 from marshmallow import fields, Schema, ValidationError, validate
 from flask import Response
 
+from src.error_handlers import BaseAPIException
+
 logger = logging.getLogger("tax_calculator.schemas")
 
 
-class SchemaParamsValidationError(Exception):
+class SchemaParamsValidationError(BaseAPIException):
+    """Exception for missing parameters"""
+
     description = "Params Validation Error"
     code = 400
     error_trace = ""
@@ -28,7 +32,7 @@ def validate_request_params(params, schema):
 
 
 class TaxCalulcatorParamsSchema(Schema):
-    salary = fields.Int(description="Salary to calculate owed taxes.", required=True)
+    salary = fields.Float(description="Salary to calculate owed taxes.", required=True)
 
 
 class TaxCalulcatorPathParamsSchema(Schema):

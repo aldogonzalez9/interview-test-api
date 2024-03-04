@@ -12,12 +12,20 @@ RATE = "rate"
 logger = logging.getLogger("tax_calculator.service")
 
 
+def fix_decimals(amount):
+    """Fix 2 decimals and round"""
+    return round(amount, 2)
+
+
 class TaxCalculatorService:
     def __init__(self) -> None:
         self.url = os.environ.get("TAX_CALCULATOR_URL")
         self.resource = os.environ.get("TAX_CALCULATOR_PATH")
 
-    def _get_calculation_data(self, year):
+    def _get_calculation_data(self, year: int):
+        """'
+        Request external api for tax brackets using year of taxation
+        """
         try:
             logger.info("Requesting external service tax information")
             external_url = build_url(
@@ -30,10 +38,10 @@ class TaxCalculatorService:
             logger.error(error)
             raise ExternalApiError()
 
-    def calculate(self, year, salary):
+    def calculate(self, year: int, salary: float):
         calculation_data = self._get_calculation_data(year)
         tax_brackets = sorted(
-            calculation_data["tax_brackets"], key=lambda x: x["min"], reverse=True
+            calculation_data["tax_brackets"], key=lambda x: x[MIN], reverse=True
         )
 
         remaining_taxable_salary = salary
@@ -60,12 +68,12 @@ class TaxCalculatorService:
             current_band = {
                 "tax_bracket": f"{tax_bracket_min}-{tax_bracket_max}",
                 "marginal_tax_rate": f"{tax_bracket_rate}",
-                "amount_taxable": real_salary_amount_taxable,
-                "tax_payable": f"{round(tax_payable,2)}",
+                "amount_taxable": fix_decimals(real_salary_amount_taxable),
+                "tax_payable": fix_decimals(tax_payable),
             }
             taxes_response[TAXES_OWED_PER_BAND].append(current_band)
-        taxes_response["total_taxes_owed"] = round(total_taxes, 2)
-        taxes_response["salary"] = salary
+        taxes_response["total_taxes_owed"] = fix_decimals(total_taxes)
+        taxes_response["salary"] = fix_decimals(salary)
         taxes_response["tax_year"] = year
 
         return taxes_response

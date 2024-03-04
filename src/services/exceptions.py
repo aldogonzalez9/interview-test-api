@@ -1,7 +1,8 @@
 from flask import Response
+from src.error_handlers import BaseAPIException
 
 
-class ExternalApiError(Exception):
+class ExternalApiError(BaseAPIException):
     description = "External API Error"
     code = 502
 

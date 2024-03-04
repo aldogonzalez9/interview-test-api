@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import utils
 import log
 from flask import Flask, g, json, Response
+from src.error_handlers import handle_exception
 
 from src.routes import api
 
@@ -25,27 +26,7 @@ app.env = config.ENV
 
 
 app.register_blueprint(api, url_prefix="/api")
-
-
-@app.errorhandler(Exception)
-def handle_exception(e):
-    if not hasattr(e, "get_response"):
-        response = Response(
-            response=json.dumps({ERROR_TRACE: str(e)}),
-            status=500,
-            mimetype="application/json",
-        )
-    else:
-        response = e.get_response()
-        response_data = {
-            "code": e.code,
-            "description": e.description,
-        }
-        if hasattr(e, ERROR_TRACE):
-            response_data[ERROR_TRACE] = e.error_trace
-        response.data = json.dumps(response_data)
-        response.content_type = "application/json"
-    return response
+app.register_error_handler(Exception, handle_exception)
 
 
 @app.after_request

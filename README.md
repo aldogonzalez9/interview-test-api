@@ -14,41 +14,41 @@ Accomplish the following:
 Sample response:
 ```
 {
-    "salary": 100000,
+    "salary": 1234567.0,
     "tax_year": 2022,
     "taxes_owed_per_band": [
         {
             "amount_taxable": 50197,
             "marginal_tax_rate": "0.15",
             "tax_bracket": "0-50197",
-            "tax_payable": "7529.55"
+            "tax_payable": 7529.55
         },
         {
-            "amount_taxable": 49803,
+            "amount_taxable": 50195,
             "marginal_tax_rate": "0.205",
             "tax_bracket": "50197-100392",
-            "tax_payable": "10209.61"
+            "tax_payable": 10289.97
         },
         {
-            "amount_taxable": 0,
+            "amount_taxable": 55233,
             "marginal_tax_rate": "0.26",
             "tax_bracket": "100392-155625",
-            "tax_payable": "0.0"
+            "tax_payable": 14360.58
         },
         {
-            "amount_taxable": 0,
+            "amount_taxable": 66083,
             "marginal_tax_rate": "0.29",
             "tax_bracket": "155625-221708",
-            "tax_payable": "0.0"
+            "tax_payable": 19164.07
         },
         {
-            "amount_taxable": 0,
+            "amount_taxable": 1012859.0,
             "marginal_tax_rate": "0.33",
             "tax_bracket": "221708-0",
-            "tax_payable": "0.0"
+            "tax_payable": 334243.47
         }
     ],
-    "total_taxes_owed": 17739.17
+    "total_taxes_owed": 385587.65
 }
 ```
 
